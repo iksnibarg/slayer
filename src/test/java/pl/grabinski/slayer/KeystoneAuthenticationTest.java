@@ -14,15 +14,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class KeystoneAuthenticationTest {
 
     @Autowired
-    private OpenStackCredentials openStackCredentials;
+    private OpenStackClientFactory openStackClientFactory;
 
     @Test
     public void shouldAuthenticateInOpenStack() {
-        OSClient.OSClientV2 os = OSFactory.builderV2()
-                .endpoint(openStackCredentials.getAuthUrl())
-                .credentials(openStackCredentials.getUsername(), openStackCredentials.getPassword())
-                .tenantName(openStackCredentials.getTenantName())
-                .authenticate();
+        OSClient.OSClientV2 os = openStackClientFactory.getOsClientV2();
         Assert.assertEquals("V2", os.getAccess().getVersion().name());
     }
 }

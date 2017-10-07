@@ -30,8 +30,7 @@ public class InstanceControllerTest {
 
     @Test
     public void list() throws Exception {
-        List<Instance> instances = Collections.singletonList(
-                new Instance("1", "Abc", OffsetDateTime.now(), "ACTIVE"));
+        List<Instance> instances = Collections.singletonList(new Instance());
         when(instanceService.findAll()).thenReturn(instances);
         mockMvc.perform(get("/list"))
                 .andDo(print())

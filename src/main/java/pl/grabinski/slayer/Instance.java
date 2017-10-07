@@ -8,13 +8,6 @@ public class Instance {
     private OffsetDateTime created;
     private String status;
 
-    public Instance(String id, String name, OffsetDateTime created, String status) {
-        this.id = id;
-        this.name = name;
-        this.created = created;
-        this.status = status;
-    }
-
     public String getId() {
         return id;
     }
