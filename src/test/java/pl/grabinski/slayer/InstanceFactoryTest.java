@@ -3,18 +3,16 @@ package pl.grabinski.slayer;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.openstack4j.model.compute.Image;
 import org.openstack4j.model.compute.Server;
-import org.openstack4j.model.dns.v2.Status;
 
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.util.Date;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class InstanceFactoryTest {
