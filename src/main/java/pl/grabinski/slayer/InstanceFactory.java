@@ -13,6 +13,7 @@ public class InstanceFactory {
         Instance instance = new Instance();
         instance.setId(server.getId());
         instance.setName(server.getName());
+        instance.setImageName(server.getImage().getName());
         instance.setCreated(OffsetDateTime.ofInstant(server.getCreated().toInstant(), ZoneOffset.UTC));
         instance.setStatus(server.getStatus().name());
         return instance;

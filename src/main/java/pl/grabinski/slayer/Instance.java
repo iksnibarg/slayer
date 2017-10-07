@@ -5,6 +5,7 @@ import java.time.OffsetDateTime;
 public class Instance {
     private String id;
     private String name;
+    private String imageName;
     private OffsetDateTime created;
     private String status;
 
@@ -18,6 +19,14 @@ public class Instance {
 
     public String getName() {
         return name;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    public String getImageName() {
+        return imageName;
     }
 
     public void setName(String name) {

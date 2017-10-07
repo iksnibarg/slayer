@@ -38,6 +38,7 @@
         <thead>
           <tr>
             <th>Name</th>
+            <th>Image</th>
             <th>Time Created</th>
             <th>Status</th>
           </tr>
@@ -46,6 +47,7 @@
           <c:forEach var="instance" items="${instances}">
             <tr>
               <td><c:out value="${instance.name}"/></td>
+              <td><c:out value="${instance.imageName}"/></td>
               <td><c:out value="${instance.created}"/></td>
               <td><c:out value="${instance.status}"/></td>
             </tr>
