@@ -1,8 +1,13 @@
 package pl.grabinski.slayer;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.time.OffsetDateTime;
 
+@Entity
 public class Instance {
+
+    @Id
     private String id;
     private String name;
     private String imageName;

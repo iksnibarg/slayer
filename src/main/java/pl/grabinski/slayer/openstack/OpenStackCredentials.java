@@ -1,4 +1,4 @@
-package pl.grabinski.slayer;
+package pl.grabinski.slayer.openstack;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.boot.context.properties.ConfigurationProperties;

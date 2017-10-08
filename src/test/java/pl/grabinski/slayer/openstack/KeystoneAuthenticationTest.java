@@ -1,4 +1,4 @@
-package pl.grabinski.slayer;
+package pl.grabinski.slayer.openstack;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -6,6 +6,7 @@ import org.openstack4j.api.OSClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import pl.grabinski.slayer.openstack.OpenStackClientFactory;
 
 import static org.junit.Assert.*;
 
