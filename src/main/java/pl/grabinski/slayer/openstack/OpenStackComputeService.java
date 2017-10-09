@@ -4,6 +4,7 @@ import org.openstack4j.api.OSClient;
 import org.openstack4j.model.compute.Server;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -15,8 +16,8 @@ public class OpenStackComputeService {
         this.openStackClientFactory = openStackClientFactory;
     }
 
-    public List<? extends Server> getServers() {
+    public List<Server> getServers() {
         OSClient.OSClientV2 osClient = openStackClientFactory.getOsClientV2();
-        return osClient.compute().servers().list();
+        return new ArrayList<>(osClient.compute().servers().list());
     }
 }

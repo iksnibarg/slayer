@@ -41,7 +41,7 @@ public class OpenStackComputeServiceTest {
         when(computeService.servers()).thenReturn(serverService);
         doReturn(Collections.singletonList(server)).when(serverService).list();
 
-        List<? extends Server> servers = new OpenStackComputeService(openStackClientFactory).getServers();
+        List<Server> servers = new OpenStackComputeService(openStackClientFactory).getServers();
 
         assertEquals(Collections.singletonList(server), servers);
     }

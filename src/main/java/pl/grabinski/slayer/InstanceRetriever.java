@@ -20,7 +20,7 @@ public class InstanceRetriever {
 
 
     public List<Instance> getInstances() {
-        List<? extends Server> servers = openStackComputeService.getServers();
+        List<Server> servers = openStackComputeService.getServers();
         return servers.stream().map(instanceFactory::fromServer).collect(Collectors.toList());
     }
 }
