@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.openstack4j.model.compute.Flavor;
 import org.openstack4j.model.compute.Image;
 import org.openstack4j.model.compute.Server;
 
@@ -22,11 +23,14 @@ public class InstanceFactoryTest {
     private static final String IMAGE_NAME = "Cirros";
     private static final Date CREATED = new Date();
     private static final Server.Status STATUS = Server.Status.ACTIVE;
+    private static final String M1_TINY = "m1.tiny";
 
     @Mock
     private Server server;
     @Mock
     private Image image;
+    @Mock
+    private Flavor flavor;
 
     @Test
     public void shouldConvertServerToInstance() throws Exception {
@@ -36,6 +40,8 @@ public class InstanceFactoryTest {
         when(image.getName()).thenReturn(IMAGE_NAME);
         when(server.getCreated()).thenReturn(CREATED);
         when(server.getStatus()).thenReturn(STATUS);
+        when(server.getFlavor()).thenReturn(flavor);
+        when(flavor.getName()).thenReturn(M1_TINY);
 
         Instance instance = new InstanceFactory().fromServer(server);
 
@@ -44,6 +50,7 @@ public class InstanceFactoryTest {
         assertEquals(IMAGE_NAME, instance.getImageName());
         assertEquals(OffsetDateTime.ofInstant(CREATED.toInstant(), ZoneOffset.UTC), instance.getCreated());
         assertEquals(STATUS.name(), instance.getStatus());
+        assertEquals(M1_TINY, instance.getFlavor().getName());
     }
 
 }
