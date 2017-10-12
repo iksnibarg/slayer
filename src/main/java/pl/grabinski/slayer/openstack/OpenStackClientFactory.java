@@ -1,4 +1,4 @@
-package pl.grabinski.slayer;
+package pl.grabinski.slayer.openstack;
 
 import org.openstack4j.api.OSClient;
 import org.openstack4j.openstack.OSFactory;

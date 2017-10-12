@@ -19,32 +19,16 @@ import static org.mockito.Mockito.when;
 public class InstanceServiceTest {
 
     @Mock
-    private OpenStackClientFactory openStackClientFactory;
-    @Mock
-    private InstanceFactory instanceFactory;
+    private InstanceRepository instanceRepository;
 
-    @Mock
-    private OSClient.OSClientV2 osClientV2;
-    @Mock
-    private ComputeService computeService;
-    @Mock
-    private ServerService serverService;
-    @Mock
-    private Server server;
     @Mock
     private Instance instance;
 
 
     @Test
     public void findAll() throws Exception {
-        when(openStackClientFactory.getOsClientV2()).thenReturn(osClientV2);
-        when(osClientV2.compute()).thenReturn(computeService);
-        when(computeService.servers()).thenReturn(serverService);
-        doReturn(Collections.singletonList(server)).when(serverService).list();
-
-        when(instanceFactory.fromServer(server)).thenReturn(instance);
-
-        InstanceService instanceService = new InstanceService(openStackClientFactory, instanceFactory);
+        when(instanceRepository.findAll()).thenReturn(Collections.singletonList(instance));
+        InstanceService instanceService = new InstanceService(instanceRepository);
         assertEquals(Collections.singletonList(instance), instanceService.findAll());
     }
 
