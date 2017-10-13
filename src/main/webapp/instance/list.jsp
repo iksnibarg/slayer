@@ -39,6 +39,7 @@
           <tr>
             <th>Name</th>
             <th>Image</th>
+            <th>Flavor</th>
             <th>Time Created</th>
             <th>Status</th>
           </tr>
@@ -48,6 +49,7 @@
             <tr>
               <td><c:out value="${instance.name}"/></td>
               <td><c:out value="${instance.imageName}"/></td>
+              <td><a tabindex="0" title="${instance.flavor.name}" data-toggle="popover" data-trigger="focus" data-content="vcpus: ${instance.flavor.vcpus} <br/> ram: ${instance.flavor.ram} MiB <br/> swap: ${instance.flavor.swap} MiB <br/> disk: ${instance.flavor.disk} GiB" data-html="true"><c:out value="${instance.flavor.name}"/></a></td>
               <td><c:out value="${instance.created}"/></td>
               <td><c:out value="${instance.status}"/></td>
             </tr>
@@ -66,5 +68,10 @@
     <script src="/static/bootstrap/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="popover"]').popover();
+        });
+    </script>
   </body>
 </html>

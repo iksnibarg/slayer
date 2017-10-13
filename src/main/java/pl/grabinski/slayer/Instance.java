@@ -1,7 +1,6 @@
 package pl.grabinski.slayer;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.OffsetDateTime;
 
 @Entity
@@ -11,6 +10,8 @@ public class Instance {
     private String id;
     private String name;
     private String imageName;
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
+    private Flavor flavor;
     private OffsetDateTime created;
     private String status;
 
@@ -26,16 +27,24 @@ public class Instance {
         return name;
     }
 
-    public void setImageName(String imageName) {
-        this.imageName = imageName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getImageName() {
         return imageName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    public Flavor getFlavor() {
+        return flavor;
+    }
+
+    public void setFlavor(Flavor flavor) {
+        this.flavor = flavor;
     }
 
     public OffsetDateTime getCreated() {

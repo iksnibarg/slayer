@@ -14,8 +14,21 @@ public class InstanceFactory {
         instance.setId(server.getId());
         instance.setName(server.getName());
         instance.setImageName(server.getImage().getName());
+        instance.setFlavor(getFlavor(server));
         instance.setCreated(OffsetDateTime.ofInstant(server.getCreated().toInstant(), ZoneOffset.UTC));
         instance.setStatus(server.getStatus().name());
         return instance;
+    }
+
+    private Flavor getFlavor(Server server) {
+        org.openstack4j.model.compute.Flavor osFlavor = server.getFlavor();
+        Flavor flavor = new Flavor();
+        flavor.setId(osFlavor.getId());
+        flavor.setName(osFlavor.getName());
+        flavor.setVcpus(osFlavor.getVcpus());
+        flavor.setRam(osFlavor.getRam());
+        flavor.setDisk(osFlavor.getDisk());
+        flavor.setSwap(osFlavor.getSwap());
+        return flavor;
     }
 }
