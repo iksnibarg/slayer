@@ -42,6 +42,7 @@
             <th>Flavor</th>
             <th>Time Created</th>
             <th>Status</th>
+            <th>Notes</th>
           </tr>
         </thead>
         <tbody>
@@ -52,6 +53,12 @@
               <td><a tabindex="0" title="${instance.flavor.name}" data-toggle="popover" data-trigger="focus" data-content="vcpus: ${instance.flavor.vcpus} <br/> ram: ${instance.flavor.ram} MiB <br/> swap: ${instance.flavor.swap} MiB <br/> disk: ${instance.flavor.disk} GiB" data-html="true"><c:out value="${instance.flavor.name}"/></a></td>
               <td><c:out value="${instance.created}"/></td>
               <td><c:out value="${instance.status}"/></td>
+              <td>
+                <form action="/instance/${instance.id}" method="post" class="form-inline">
+                  <input type="text" name="notes" class="form-control" value="${instance.notes}"/>
+                  <button id="saveButton" type="submit" class="btn button-small">Save</button>
+                </form>
+              </td>
             </tr>
           </c:forEach>
         </tbody>

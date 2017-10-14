@@ -1,6 +1,9 @@
 package pl.grabinski.slayer;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.time.OffsetDateTime;
 
 @Entity
@@ -14,6 +17,7 @@ public class Instance {
     private Flavor flavor;
     private OffsetDateTime created;
     private String status;
+    private String notes;
 
     public String getId() {
         return id;
@@ -62,4 +66,13 @@ public class Instance {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
 }
