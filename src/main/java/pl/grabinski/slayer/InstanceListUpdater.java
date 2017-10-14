@@ -21,7 +21,24 @@ public class InstanceListUpdater {
     public void updateInstanceList() {
         List<Instance> instances = instanceRetriever.getInstances();
         instanceRepository.deleteByIdNotIn(getIds(instances));
-        instances.forEach(instanceRepository::save);
+        for (Instance instance : instances) {
+            update(instance);
+        }
+    }
+
+    void update(Instance openStackOriginatedInstance) {
+        Instance repositoryInstance = instanceRepository.findOne(openStackOriginatedInstance.getId()).orElseGet(Instance::new);
+        copyAttributes(openStackOriginatedInstance, repositoryInstance);
+        instanceRepository.save(repositoryInstance);
+    }
+
+    private void copyAttributes(Instance source, Instance target) {
+        target.setId(source.getId());
+        target.setName(source.getName());
+        target.setImageName(source.getImageName());
+        target.setFlavor(source.getFlavor());
+        target.setCreated(source.getCreated());
+        target.setStatus(source.getStatus());
     }
 
     private List<String> getIds(List<Instance> instances) {
