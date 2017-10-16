@@ -54,10 +54,14 @@
               <td><c:out value="${instance.created}"/></td>
               <td><c:out value="${instance.status}"/></td>
               <td>
-                <form action="/instance/${instance.id}" method="post" class="form-inline">
-                  <input type="text" name="notes" class="form-control" value="${instance.notes}"/>
-                  <button id="saveButton" type="submit" class="btn button-small">Save</button>
-                </form>
+                <c:out value="${instance.notes}"/>
+                <a tabindex="0" title="${instance.name} notes" class="edit pull-right" data-toggle="edit" data-placement="bottom" data-html="true" data-content="
+                  <form action='/instance/${instance.id}' method='post' class='form-inline' accept-charset='UTF-8'>
+                    <textarea maxlength='200' style='resize:none' class='form-control' name='notes' rows='3'><c:out value='${instance.notes}'/></textarea>
+                    <button id='save' type='submit' class='btn button-small btn-primary glyphicon glyphicon-ok'></button>
+                  </form>
+                  "><span class="glyphicon glyphicon-pencil pull-right"></span>
+                </a>
               </td>
             </tr>
           </c:forEach>
@@ -78,6 +82,10 @@
     <script>
         $(document).ready(function(){
             $('[data-toggle="popover"]').popover();
+            $('[data-toggle="edit"]').popover();
+            $('[data-toggle="edit"]').on('click', function (e) {
+                $('[data-toggle="edit"]').not(this).popover('hide');
+            });
         });
     </script>
   </body>
