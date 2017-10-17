@@ -82,7 +82,9 @@
     <script>
         $(document).ready(function(){
             $('[data-toggle="popover"]').popover();
-            $('[data-toggle="edit"]').popover();
+            $('[data-toggle="edit"]').popover().on('shown.bs.popover', function() {
+                $('textarea[name="notes"]').focus();
+            });
             $('[data-toggle="edit"]').on('click', function (e) {
                 $('[data-toggle="edit"]').not(this).popover('hide');
             });
