@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
+@RequestMapping(path = "/instances")
 public class InstanceController {
 
     private final InstanceService instanceService;
@@ -19,17 +20,17 @@ public class InstanceController {
         this.instanceService = instanceService;
     }
 
-    @RequestMapping(path = "/list")
+    @RequestMapping(method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("instances", instanceService.findAll());
         return "instance/list";
     }
 
-    @RequestMapping(path = "/instance/{id}", method = RequestMethod.POST)
-    public String updateNote(@PathVariable String id, String notes, Model model) {
+    @RequestMapping(path = "/{id}", method = RequestMethod.POST)
+    public String updateNote(@PathVariable String id, String notes) {
         log.info("updating notes for instance {}: {}", id, notes);
         instanceService.updateNotes(id, notes);
-        return "redirect:/list";
+        return "redirect:/instances";
     }
 
 }

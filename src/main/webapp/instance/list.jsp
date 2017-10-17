@@ -56,7 +56,7 @@
               <td>
                 <c:out value="${instance.notes}"/>
                 <a tabindex="0" title="${instance.name} notes" class="edit pull-right" data-toggle="edit" data-placement="bottom" data-html="true" data-content="
-                  <form action='/instance/${instance.id}' method='post' class='form-inline' accept-charset='UTF-8'>
+                  <form action='/instances/${instance.id}' method='post' class='form-inline' accept-charset='UTF-8'>
                     <textarea maxlength='200' style='resize:none' class='form-control' name='notes' rows='3'><c:out value='${instance.notes}'/></textarea>
                     <button id='save' type='submit' class='btn button-small btn-primary glyphicon glyphicon-ok'></button>
                   </form>
