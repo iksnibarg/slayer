@@ -3,6 +3,7 @@ package pl.grabinski.slayer.openstack;
 import org.openstack4j.api.OSClient;
 import org.openstack4j.model.compute.Server;
 import org.springframework.stereotype.Component;
+import pl.grabinski.slayer.util.performance.LogExecutionTime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,7 @@ public class OpenStackComputeService {
         this.openStackClientFactory = openStackClientFactory;
     }
 
+    @LogExecutionTime
     public List<Server> getServers() {
         OSClient.OSClientV2 osClient = openStackClientFactory.getOsClientV2();
         return new ArrayList<>(osClient.compute().servers().list());

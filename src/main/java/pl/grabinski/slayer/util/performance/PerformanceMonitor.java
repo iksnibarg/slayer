@@ -1,4 +1,4 @@
-package pl.grabinski.slayer.util;
+package pl.grabinski.slayer.util.performance;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -13,8 +13,7 @@ public class PerformanceMonitor {
 
     private static final Logger log = LoggerFactory.getLogger(PerformanceMonitor.class);
 
-    @Around("execution(* pl.grabinski.slayer.InstanceRetriever.*(..)) || " +
-            "execution(* pl.grabinski.slayer.openstack.*.*(..))")
+    @Around("@annotation(LogExecutionTime)")
     public Object logMethodExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
         long start = System.currentTimeMillis();
         try {
