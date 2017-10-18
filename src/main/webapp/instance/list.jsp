@@ -42,6 +42,7 @@
             <th>Flavor</th>
             <th>Time Created</th>
             <th>Status</th>
+            <th>Notes</th>
           </tr>
         </thead>
         <tbody>
@@ -52,6 +53,16 @@
               <td><a tabindex="0" title="${instance.flavor.name}" data-toggle="popover" data-trigger="focus" data-content="vcpus: ${instance.flavor.vcpus} <br/> ram: ${instance.flavor.ram} MiB <br/> swap: ${instance.flavor.swap} MiB <br/> disk: ${instance.flavor.disk} GiB" data-html="true"><c:out value="${instance.flavor.name}"/></a></td>
               <td><c:out value="${instance.created}"/></td>
               <td><c:out value="${instance.status}"/></td>
+              <td>
+                <c:out value="${instance.notes}"/>
+                <a tabindex="0" title="${instance.name} notes" class="edit pull-right" data-toggle="edit" data-placement="bottom" data-html="true" data-content="
+                  <form action='/instances/${instance.id}' method='post' class='form-inline' accept-charset='UTF-8'>
+                    <textarea maxlength='200' style='resize:none' class='form-control' name='notes' rows='3'><c:out value='${instance.notes}'/></textarea>
+                    <button id='save' type='submit' class='btn button-small btn-primary glyphicon glyphicon-ok'></button>
+                  </form>
+                  "><span class="glyphicon glyphicon-pencil pull-right"></span>
+                </a>
+              </td>
             </tr>
           </c:forEach>
         </tbody>
@@ -71,6 +82,12 @@
     <script>
         $(document).ready(function(){
             $('[data-toggle="popover"]').popover();
+            $('[data-toggle="edit"]').popover().on('shown.bs.popover', function() {
+                $('textarea[name="notes"]').focus();
+            });
+            $('[data-toggle="edit"]').on('click', function (e) {
+                $('[data-toggle="edit"]').not(this).popover('hide');
+            });
         });
     </script>
   </body>

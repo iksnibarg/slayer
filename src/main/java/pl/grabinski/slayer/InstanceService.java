@@ -1,5 +1,6 @@
 package pl.grabinski.slayer;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +15,13 @@ public class InstanceService {
     }
 
     public List<Instance> findAll() {
-        return instanceRepository.findAll();
+        return instanceRepository.findAll(new Sort("created"));
     }
 
+    public void updateNotes(String id, String notes) {
+        instanceRepository.findOne(id).ifPresent(instance -> {
+            instance.setNotes(notes);
+            instanceRepository.save(instance);
+        });
+    }
 }
