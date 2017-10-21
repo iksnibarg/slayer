@@ -17,7 +17,7 @@ public class InstanceListUpdater {
         this.instanceRepository = instanceRepository;
     }
 
-    @Scheduled(fixedDelay = 10000)
+    @Scheduled(fixedDelayString = "#{${instance.list.update.interval.seconds} * 1000}")
     public void updateInstanceList() {
         List<Instance> instances = instanceRetriever.getInstances();
         instanceRepository.deleteByIdNotIn(getIds(instances));
